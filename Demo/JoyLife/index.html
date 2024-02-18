@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minmum-scale=1.0, maximum-scale=1.0, useer-scalable=no">
+    <title>Joylife</title>
+  </head>
+  <script>
+    //设置画布标准宽度为375px
+    let uiWidth = 375;
+    //动态计算html根节点字体大小的方法
+    function setFontSize() {
+      var fontSize = document.documentElement.clientWidth/(uiWidth/16);
+      document.documentElement.style.fontSize = fontSize + 'px';
+    }
+    //监听页面尺寸变化，计算根节点字体大小的方法
+    setFontSize()
+    window.addEventListener('resize', setFontSize);
+  </script>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

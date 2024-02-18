@@ -1,0 +1,13 @@
+@mixin flexac{
+    // 下方导航栏布局
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+@mixin flexcc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

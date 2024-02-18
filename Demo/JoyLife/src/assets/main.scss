@@ -1,0 +1,10 @@
+body{
+    font-size: 16px;//之后使用rem布局，改变html的font-size，需要在body重新配置font-size，否则会继承html的font-size，导致rem布局失效
+    padding: 0;
+    margin: 0;
+}
+
+::-webkit-scrollbar{
+    //将滚动条隐藏
+    display: none;
+}
