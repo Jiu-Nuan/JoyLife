@@ -5,9 +5,16 @@
     align-items: center;
 }
 
+@mixin flexbc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
 @mixin flexcc{
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    // flex-direction: column;
 }
