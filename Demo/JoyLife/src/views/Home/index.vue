@@ -45,17 +45,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 
 //加入头部内容
-const moduleList = reactive(["发现","关注", "附近", "广场舞", "音乐"]);
-
-//初始化swiper
-let mySwiper = null;
-const onSwiper = (swiper) => {
-  mySwiper = swiper;
-};
-
-const onSlideChange = () => {
-  console.log(mySwiper.activeIndex);
-};
+const moduleList = reactive(['发现','关注', '附近', '广场舞', '音乐']);
 
 //点击切换标题
 // 使用ref来创建一个响应式的变量
@@ -64,7 +54,22 @@ const moduleIdx = ref(0);
 // 定义changeSwiper函数，用于切换标题
 const changeSwiper = (idx) => {
   moduleIdx.value = idx;
+  mySwiper?.slidTo(idx);//滑动到对应标题
 };
+
+//初始化swiper
+let mySwiper = null;
+const onSwiper = (swiper) => {
+  mySwiper = swiper;
+};
+
+//把头部切换与swiper切换关联
+const onSlideChange = ({activeIndex}) => {
+  console.log(mySwiper.activeIndex);
+  moduleIdx.value = activeIndex;
+};
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -83,9 +88,9 @@ const changeSwiper = (idx) => {
     top: 0;
     left: 0;
     right: 0;
-    height: 2rem;
+    height: 1rem;
     background-color: #fff;
-    padding: 0.1rem;
+    padding: 1rem;
     z-index: 2;
     @include flexbc;
 
@@ -102,7 +107,7 @@ const changeSwiper = (idx) => {
       color: rgb(149, 149, 149);
 
       span {
-        padding: 1rem;
+        padding: 0.9375rem;
         box-sizing: content-box; //表示元素的宽度和高度只包括内容部分，不包括内边距、边框和外边距。
 
         &.active {
