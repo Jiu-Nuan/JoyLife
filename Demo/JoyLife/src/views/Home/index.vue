@@ -82,7 +82,8 @@ const changeSwiper = (idx) => {
     position: fixed;
     top: 0;
     left: 0;
-    height: 3rem;
+    right: 0;
+    height: 2rem;
     background-color: #fff;
     padding: 0.1rem;
     z-index: 2;
