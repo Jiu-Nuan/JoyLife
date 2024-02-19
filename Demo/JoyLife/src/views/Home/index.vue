@@ -22,16 +22,16 @@
         <div class="slid-contet">1</div>
       </swiper-slide>
       <swiper-slide>
-        <div class="slid-contet">2</div> 
+        <div class="slid-contet">2</div>
       </swiper-slide>
       <swiper-slide>
-        <div class="slid-contet">3</div> 
+        <div class="slid-contet">3</div>
       </swiper-slide>
       <swiper-slide>
-        <div class="slid-contet">4</div> 
+        <div class="slid-contet">4</div>
       </swiper-slide>
       <swiper-slide>
-        <div class="slid-contet">5</div> 
+        <div class="slid-contet">5</div>
       </swiper-slide>
       ...
     </swiper>
@@ -45,7 +45,7 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 
 //加入头部内容
-const moduleList = reactive(["关注", "发现", "附近", "广场舞", "音乐"]);
+const moduleList = reactive(["发现","关注", "附近", "广场舞", "音乐"]);
 
 //初始化swiper
 let mySwiper = null;
@@ -57,13 +57,14 @@ const onSlideChange = () => {
   console.log(mySwiper.activeIndex);
 };
 
-
 //点击切换标题
-let moduleIdx = ref(1);
-const changeSwiper = (idx) => {
-  moduleIdx.value = idx
-};
+// 使用ref来创建一个响应式的变量
+const moduleIdx = ref(0);
 
+// 定义changeSwiper函数，用于切换标题
+const changeSwiper = (idx) => {
+  moduleIdx.value = idx;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -72,7 +73,7 @@ const changeSwiper = (idx) => {
     height: 100vh;
     background-color: rgb(249, 250, 249);
 
-    .slid-contet{
+    .slid-contet {
       @include flexcc;
       height: 50vh;
     }
