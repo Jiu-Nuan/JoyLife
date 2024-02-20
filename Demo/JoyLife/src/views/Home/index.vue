@@ -87,12 +87,12 @@ const posList = []; //下标线的偏移量
 const getModuleParams = () => {
   const modules = moduleRef.value.querySelectorAll("span");
   //获取下标线宽度
-  const moduleWidth = moduleRef.value.getBoundingClientRect().width;
+  const underLineWidth = underLineRef.value.getBoundingClientRect().width;
   //遍历每个头部标题，计算其到窗口左侧的距离
   for (let i = 0; i < modules.length; i++) {
     let moduleRect = modules[i].getBoundingClientRect();
     //下标线在每个标题正下方时的距离窗口左侧的距离=当前标题距左侧的距离+当前标题宽度的一半-下标线宽度的一半
-    posList.push(moduleRect.left + moduleRect.width / 2 - moduleWidth / 2);
+    posList.push(moduleRect.left + moduleRect.width / 2 - underLineWidth / 2);
   }
 };
 
@@ -102,9 +102,7 @@ const onProgress = ({ progress }) => {
   //滑动到最后一个
   if (progress === 1) {
     //当滑动到最后一个时，下标线偏移量设置为距离数组最后一个值
-    underLineRef.value.style.transform = `translateX(${
-      posList[posList.length - 1]
-    }px)`;
+    underLineRef.value.style.transform = `translateX(${ posList[posList.length - 1]}px)`;
     return;
   }
   //其他情况
@@ -113,10 +111,7 @@ const onProgress = ({ progress }) => {
   //结果向下取整
   let nowPosIdxInt = Math.floor(nowPosIdx);
   //计算当前progress下标线的偏移量
-  let trans =
-    posList[nowPosIdxInt + 1] -
-    posList[nowPosIdxInt] * (nowPosIdx - nowPosIdxInt) +
-    posList[nowPosIdxInt];
+  let trans = (posList[nowPosIdxInt + 1] - posList[nowPosIdxInt]) *(nowPosIdx - nowPosIdxInt) +posList[nowPosIdxInt];
 
   underLineRef.value.style.transform = `translateX(${trans}px)`;
   //return;
