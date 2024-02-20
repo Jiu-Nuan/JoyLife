@@ -18,3 +18,9 @@
     align-items: center;
     // flex-direction: column;
 }
+
+@mixin flexlr{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

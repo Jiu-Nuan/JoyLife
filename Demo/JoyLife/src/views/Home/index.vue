@@ -28,7 +28,9 @@
         <div class="slid-contet">1</div>
       </swiper-slide>
       <swiper-slide>
-        <div class="slid-contet">2</div>
+        <div class="slid-contet">
+          <Explore></Explore>
+        </div>
       </swiper-slide>
       <swiper-slide>
         <div class="slid-contet">3</div>
@@ -49,6 +51,7 @@ import { ref, reactive, onMounted } from "vue";
 //引入swiper插件样式
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+import Explore from './Explore.vue'
 
 //初始化swiper
 let mySwiper = null;
@@ -57,7 +60,7 @@ const onSwiper = (swiper) => {
 };
 
 //加入头部内容
-const moduleList = reactive(["关注", "发现", "附近", "广场舞", "音乐"]);
+const moduleList = reactive(['关注', '发现', '附近', '广场舞', '音乐']);
 
 //点击切换标题
 // 使用ref来创建一个响应式的变量
