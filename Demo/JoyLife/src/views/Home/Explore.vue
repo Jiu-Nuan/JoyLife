@@ -1,28 +1,32 @@
 <template>
-  <div class="explore-main">
-    <div class="explore-outer">
-      <div ref="exploreRef">
-      <MiniCard v-for="(item,index) in exploreCards" :info="item" :key="item.id" @onImgLoaded="addImgCount"></MiniCard>
-      </div>
+  <LoadPannel>
+    <div ref="exploreRef">
+      <MiniCard
+        v-for="(item, index) in exploreCards"
+        :info="item"
+        :key="item.id"
+        @onImgLoaded="addImgCount"
+      ></MiniCard>
     </div>
-  </div>
+  </LoadPannel>
 </template>
 
 <script setup>
 import { ref, reactive } from "vue";
+import LoadPannel from "../../components/LoadPannel.vue"; //上滑加载组件
 import MiniCard from "../../components/MiniCard.vue";
 import { exploreCardMock } from "../../mock/homeData";
-import computeWaterFallFlow from '../../utils/waterFallFlow';
+import computeWaterFallFlow from "../../utils/waterFallFlow";
 
 //父组件初始化卡片数据
-let exploreCards = reactive([])
-let imgLen //记录需要加载的总图片数
+let exploreCards = reactive([]);
+let imgLen; //记录需要加载的总图片数
 const initData = () => {
   let res = exploreCardMock();
   imgLen = res.length;
-  res.forEach(item =>{
+  res.forEach((item) => {
     exploreCards.push(item);
-  })
+  });
 };
 
 initData();
@@ -34,21 +38,22 @@ const exploreRef = ref(null);
 let imgCount = 0;
 const addImgCount = () => {
   imgCount++;
-  if(imgCount === imgLen){
+  if (imgCount === imgLen) {
     //开始计算瀑布流
-    computeWaterFallFlow(exploreRef.value)
+    computeWaterFallFlow(exploreRef.value);
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.explore-main {
-  overflow: auto;
-  height: 100vh;
-  .explore-outer {
-    position: relative;
-    margin-top: 3rem;
-    margin-bottom: 3rem;
-  }
-}
+//消除重复（在LoadPannel中已有）
+// .explore-main {
+//   overflow: auto;
+//   height: 100vh;
+//   .explore-outer {
+//     position: relative;
+//     margin-top: 3rem;
+//     margin-bottom: 3rem;
+//   }
+// }
 </style>

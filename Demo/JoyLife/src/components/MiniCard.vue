@@ -42,6 +42,7 @@ const emits = defineEmits(['onImgLoaded'])
   box-shadow: 0.125rem 0.3125rem rgba(181, 181, 191, 0.1);
   overflow: hidden;
   position: absolute;
+  
   .card-top {
     position: relative;
 
