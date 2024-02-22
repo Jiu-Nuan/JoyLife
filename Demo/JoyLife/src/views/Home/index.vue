@@ -28,9 +28,8 @@
         <div class="slid-contet">1</div>
       </swiper-slide>
       <swiper-slide>
-        <div class="slid-contet">
+        <!-- <div class="slid-contet"></div> -->
           <Explore></Explore>
-        </div>
       </swiper-slide>
       <swiper-slide>
         <div class="slid-contet">3</div>

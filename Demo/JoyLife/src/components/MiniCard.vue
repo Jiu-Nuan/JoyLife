@@ -7,10 +7,16 @@
           <polygon class="card-tri" stroke-linejoin = "round" points = "0,0 0,200 170,100"></polygon>
         </svg>
       </div>
-      <img :src="info.imageUrl" class="card-source"/>
+      <img :src="info.imageUrl" alt="" class="card-source"/>
     </div>
-    <div class="card-title">2</div>
-    <div class="card-bottom">3</div>
+    <div class="card-title">{{ info.content }}</div>
+    <div class="card-bottom">
+      <div class="card-b-left">
+        <img :src="info.avatar" alt="" class="card-head"/>
+        <div class="card-b-right">{{ info.author }}</div>
+      </div>
+      <div class="card-b-right"></div>
+    </div>
   </div>
 </template>
 
@@ -62,10 +68,38 @@ info = exploreCardMock();
     }
   }
   .card-title {
+    width: calc(100% - 1rem);
+    font-size: 0.75rem;
+    letter-spacing: 0.05rem;
+    color: rgb(51,51,51);
+    line-height: 1.125rem;
+    font-weight: 600;
+    padding: 0 0.5rem;
+
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .card-bottom {
     padding: 0.8rem 0.5rem;
     @include flexlr;
+
+    .card-b-left {
+      @include flexxl;
+      
+      .card-head{
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+      }
+
+      .card-name{
+        // color: rgb(153,153,153);
+        // font-size: 0.5rem;
+        // margin: 0 0 0 0.4375rem;
+      }
+    }
   }
 }
 </style>

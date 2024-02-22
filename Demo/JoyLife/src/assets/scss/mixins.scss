@@ -16,11 +16,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    // flex-direction: column;
+    // flex-direction: row;
 }
 
 @mixin flexlr{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flexxl{
+    display: flex;
+    justify-content: flex-start;
     align-items: center;
 }
