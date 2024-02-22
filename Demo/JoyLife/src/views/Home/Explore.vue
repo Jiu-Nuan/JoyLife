@@ -1,7 +1,7 @@
 <template>
   <div class="explore-main">
     <div class="explore-outer">
-      <MiniCard></MiniCard>
+      <MiniCard v-for="(item,index) in exploreCards" :info="item" :key="item.id"></MiniCard>
     </div>
   </div>
 
@@ -12,6 +12,18 @@
 <script setup>
 import { ref, reactive } from "vue";
 import MiniCard from "../../components/MiniCard.vue";
+import { exploreCardMock } from "../../mock/homeData";
+
+//父组件初始化卡片数据
+let exploreCards = reactive([])
+const initData = () => {
+  let res = exploreCardMock();
+  res.forEach(item =>{
+    exploreCards.push(item);
+  })
+};
+
+initData();
 </script>
 
 <style lang="scss" scoped>
