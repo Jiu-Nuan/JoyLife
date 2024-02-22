@@ -15,7 +15,8 @@ import MiniCard from "../../components/MiniCard.vue";
 <style lang="scss" scoped>
 .explore-main {
   overflow: auto;
-  height: 100px;
+  //width: 100vh;
+  height: 100%;
   .explore-outer {
     position: relative;
     margin-top: 3rem;

@@ -4,7 +4,7 @@
       <div class="card-tri-bg" v-if="info.isVideo">
         <!-- 绘制播放按钮：svg画法 -->
         <svg viewBox = "-70 -50 200 300" class="card-svg">
-          <polygon class="card-tri" stroke-linejoin = "round" points = "0,0,200,170,100"></polygon>
+          <polygon class="card-tri" stroke-linejoin = "round" points = "0,0 0,200 170,100"></polygon>
         </svg>
       </div>
       <img :src="info.imageUrl" class="card-source"/>
@@ -19,7 +19,8 @@ import { ref, reactive } from "vue";
 //引入mock数据
 import { exploreCardMock } from "../mock/homeData";
 
-let info = exploreCardMock();
+let info = reactive({});
+info = exploreCardMock();
 </script>
 
 <style lang="scss" scoped>
