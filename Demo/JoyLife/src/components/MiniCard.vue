@@ -2,10 +2,11 @@
   <div class="card-content">
     <div class="card-top">
       <div class="card-tri-bg" v-if="info.isVideo">
-        <!-- 绘制播放按钮：svg画法 -->
+        <!-- 绘制播放按钮：svg画法——————图标未对齐
         <svg viewBox = "-70 -50 200 300" class="card-svg">
           <polygon class="card-tri" stroke-linejoin = "round" points = "0,0 0,200 170,100"></polygon>
-        </svg>
+        </svg> -->
+        <i class="iconfont icon-bofang"></i>
       </div>
       <img :src="info.imageUrl" alt="" class="card-source"/>
     </div>
@@ -13,9 +14,12 @@
     <div class="card-bottom">
       <div class="card-b-left">
         <img :src="info.avatar" alt="" class="card-head"/>
-        <div class="card-b-right">{{ info.author }}</div>
+        <div class="card-name">{{ info.author }}</div>
       </div>
-      <div class="card-b-right"></div>
+      <div class="card-b-right">
+        <i class="iconfont icon-aixin icon-card-small"></i>
+        <p class="card-like" v-if="info.likeCount>0">{{ info.likeCount }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -51,15 +55,19 @@ info = exploreCardMock();
       background-color: rgba(0, 0, 0, 0.2);
       @include flexcc;
 
-      .caed-svg{
-        width: 0.8rem;
-        height: 0.8rem;
+      // .caed-svg{
+      //   width: 0.8rem;
+      //   height: 0.8rem;
 
-        .card-tri{
-          fill: rgb(254,254,254);
-          stroke: rgb(254,254,254);
-          stroke-width: 50;
-        }
+      //   .card-tri{
+      //     fill: rgb(254,254,254);
+      //     stroke: rgb(254,254,254);
+      //     stroke-width: 50;
+      //   }
+      // }
+      .icon-bofang{
+        font-size: 1.2rem;
+        color: rgb(254,254,254);
       }
     }
 
@@ -95,9 +103,21 @@ info = exploreCardMock();
       }
 
       .card-name{
-        // color: rgb(153,153,153);
-        // font-size: 0.5rem;
-        // margin: 0 0 0 0.4375rem;
+        color: rgb(153,153,153);
+        font-size: 0.5rem;
+        margin: 0 0 0 0.4375rem;
+      }
+    }
+    .card-b-right{
+      @include flexxl;
+       .incon-card-small{
+        font-size: 0.5rem;
+        color: rgb(153,153,153);
+      }
+      .card-like{
+        margin: 0 0 0 0.3rem;
+        color: rgb(153,153,153);
+        font-size: 0.5rem;
       }
     }
   }

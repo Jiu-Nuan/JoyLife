@@ -4,7 +4,7 @@ const exploreCardMock = () =>{
         id:0,       
         isVideo:1,  //是否为视频文件
         imageUrl:'src/mock/images/img00.jpg',
-        content:'66666666666',
+        content:'《利剑显锋芒，清风正气扬》',
         avatar:'src/mock/images/h00.jpg',
         author:'酒暖',
         likeCount:100
