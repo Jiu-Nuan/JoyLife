@@ -1,8 +1,6 @@
 <template>
   <router-view></router-view>
-  <TabBar> 
-    
-  </TabBar>
+  <TabBar></TabBar>
 </template>
 
 <script setup>

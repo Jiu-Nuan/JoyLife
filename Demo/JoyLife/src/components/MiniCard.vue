@@ -8,7 +8,7 @@
         </svg> -->
         <i class="iconfont icon-bofang"></i>
       </div>
-      <img :src="props.info.imageUrl" alt="" class="card-source"/>
+      <img :src="props.info.imageUrl" alt="" class="card-source" @load="emits('onImgLoaded')"/>
     </div>
     <div class="card-title">{{ props.info.content }}</div>
     <div class="card-bottom">
@@ -29,7 +29,8 @@ import { ref, reactive } from "vue";
 
 //在小卡片子组件中获取父组件传过来的数据
 const props = defineProps(['info'])
-
+//监听卡片是否加载完成
+const emits = defineEmits(['onImgLoaded'])
 </script>
 
 <style lang="scss" scoped>
@@ -40,7 +41,7 @@ const props = defineProps(['info'])
   border-radius: 0.5rem;
   box-shadow: 0.125rem 0.3125rem rgba(181, 181, 191, 0.1);
   overflow: hidden;
-  // position: absolute;//暂时改为相对定位
+  position: absolute;
   .card-top {
     position: relative;
 
