@@ -25,11 +25,23 @@
 import { ref, reactive, watch } from "vue";
 import routes from "@/router/routes";
 import router from "@/router";
+import useHooks from "../hooks/useHooks";
+
+const {changeRefresh} = useHooks;
 
 const menus = routes;
 const path = ref("/");
 
+
 const toPath = (p) => {
+  //路由切换，router-view与外部组件无法直接通信
+  //借组钩子Hooks实现各种组件之间通信
+  
+  if(path.value == p && p === '/'){
+    //需要刷新条件：1.当前路径与点击路径相同，2.当前路径为首页
+    changeRefresh(true);
+    console.log(changeRefresh)
+  }
   router.push({
     path: p,
   });

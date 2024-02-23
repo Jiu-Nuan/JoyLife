@@ -32,7 +32,7 @@ onMounted(() => {
     let scrollTop = this.scrollTop;
     let clientHeight = this.clientHeight;  
     let scrollHeight = this.scrollHeight;
-    console.log(scrollTop, clientHeight, scrollHeight);
+    // console.log(scrollTop, clientHeight, scrollHeight);
     //如果scrollTop + client Height >= scrollHeight，说明已经滑到底部
     //手机端触底一次触发多次
     //所以触底时记录当前的scrollHeight,确保在当前scrollHeight下只触发一次

@@ -1,6 +1,10 @@
 <template>
   <LoadPannel @searchMore="searchMore">
-    <div ref="exploreRef" >
+    <div ref="refreshRef" class="reffresh-div">
+      <!-- 简单的加载动画 -->
+      <i class="iconfont icon-jiazai"></i>
+    </div>
+    <div ref="exploreRef">
       <MiniCard
         v-for="(item, index) in exploreCards"
         :info="item"
@@ -12,20 +16,29 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, toRefs, watch, onMounted, nextTick } from "vue";
 import LoadPannel from "../../components/LoadPannel.vue"; //上滑加载组件
 import MiniCard from "../../components/MiniCard.vue";
 import { exploreCardMock } from "../../mock/homeData";
 import computeWaterFallFlow from "../../utils/waterFallFlow";
+import useHooks from "../../hooks/useHooks";
+
+const { isRefresh } = toRefs(useHooks.state);
+const { changeRefresh } = useHooks;
 
 //父组件初始化卡片数据
 let exploreCards = reactive([]);
 let imgLen; //记录需要加载的总图片数
 const initData = async () => {
   let res = await exploreCardMock();
-  imgLen = res.length;
-  res.forEach((item) => {
-    exploreCards.push(item);
+
+  //将刷新后的数据push入数组前，数据查询完后需要清空数组
+  exploreCards.splice(0, exploreCards.length);
+  nextTick(() => {
+    imgLen = res.length;
+    res.forEach((item) => {
+      exploreCards.push(item);
+    });
   });
 };
 
@@ -54,8 +67,41 @@ const searchMore = async (callback) => {
   //更新瀑布流数组长度
   imgLen = exploreCards.length;
   //callback参数，传入回调函数
-  callback?callback():'';
+  callback ? callback() : "";
 };
+
+const refreshRef = ref(null);
+const exploreRefresh = async (callback) => {
+  exploreRef.value.parentNode.parentNode.scrollTop = 0;
+  //刷新页面时，顶部展开一个面板，显示loading动画
+  refreshRef.value.style.height = "100px";
+  refreshRef.value.style.transition = "all 0.3s linear";
+  //面板展开后，查询数据
+  imgCount = 0; //卡片数置零，否则瀑布流计算出错
+  await initData();
+  refreshRef.value.style.height = "0";
+  //数据查询完毕后，关闭面板
+  setTimeout(() => {
+    refreshRef.value.style.transition = "";
+  }, 300);
+
+  callback ? callback() : "";
+};
+watch(
+  () => isRefresh.value,
+  async (newValue, oldValue) => {
+    //如果isRefresh为true，刷新方法
+    if (newValue) {
+      await exploreRefresh();
+      changeRefresh(false);
+    }
+  }
+);
+
+//首次打开刷新数据
+onMounted(() => {
+  exploreRefresh();
+});
 </script>
 
 <style lang="scss" scoped>
@@ -69,4 +115,16 @@ const searchMore = async (callback) => {
 //     margin-bottom: 3rem;
 //   }
 // }
+
+.reffresh-div {
+  height: 0;
+  width: 100%;
+  overflow: hidden;
+  @include flexcc;
+
+  i {
+    color: rgb(154, 154, 154);
+    animation: rotate 0.8s linear infinite;
+  }
+}
 </style>
