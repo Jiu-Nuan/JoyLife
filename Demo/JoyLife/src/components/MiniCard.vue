@@ -17,7 +17,8 @@
         <div class="card-name">{{ props.info.author }}</div>
       </div>
       <div class="card-b-right">
-        <i class="iconfont icon-aixin icon-card-small"></i>
+        <i class="iconfont icon-aixin_shixin icon-card-small-liked" v-if="props.info.isLiked"></i>
+        <i class="iconfont icon-aixin icon-card-small-not-liked" v-else></i>
         <p class="card-like" v-if="props.info.likeCount<10000">{{ props.info.likeCount }}</p>
         <p class="card-like" v-if="props.info.likeCount>=10000">{{ (props.info.likeCount / 10000).toFixed(1) + '万' }}</p>
       </div>
@@ -106,20 +107,24 @@ const emits = defineEmits(['onImgLoaded'])
 
       .card-name{
         color: rgb(153,153,153);
-        font-size: 0.75rem;
+        font-size: 0.9rem;
         margin: 0 0 0 0.4375rem;
       }
     }
     .card-b-right{
       @include flexxl;
-       .incon-card-small{
-        font-size: 0.75rem;
+      font-size: 0.9rem;
+
+      .icon-card-small-not-liked{
         color: rgb(153,153,153);
+      }
+      .icon-card-small-liked{
+        color: red;
       }
       .card-like{
         margin: 0 0 0 0.3rem;
         color: rgb(153,153,153);
-        font-size: 0.75rem;
+        
       }
     }
   }
