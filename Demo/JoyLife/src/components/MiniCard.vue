@@ -18,7 +18,8 @@
       </div>
       <div class="card-b-right">
         <i class="iconfont icon-aixin icon-card-small"></i>
-        <p class="card-like" v-if="props.info.likeCount>0">{{ props.info.likeCount }}</p>
+        <p class="card-like" v-if="props.info.likeCount<10000">{{ props.info.likeCount }}</p>
+        <p class="card-like" v-if="props.info.likeCount>=10000">{{ (props.info.likeCount / 10000).toFixed(1) + '万' }}</p>
       </div>
     </div>
   </div>

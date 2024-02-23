@@ -7,7 +7,7 @@
           v-for="(item, idx) in moduleList"
           @click="changeSwiper(idx)"
           :class="{ active: idx === moduleIdx }"
-          >{{ item }}</span
+        >{{ item }}</span
         >
         <div class="under-line" ref="underLineRef">
           <div>
@@ -29,7 +29,7 @@
       </swiper-slide>
       <swiper-slide>
         <!-- <div class="slid-contet"></div> -->
-          <Explore></Explore>
+        <Explore></Explore>
       </swiper-slide>
       <swiper-slide>
         <div class="slid-contet">3</div>
@@ -50,7 +50,7 @@ import { ref, reactive, onMounted } from "vue";
 //引入swiper插件样式
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
-import Explore from './Explore.vue'
+import Explore from "./Explore.vue";
 
 //初始化swiper
 let mySwiper = null;
@@ -59,7 +59,7 @@ const onSwiper = (swiper) => {
 };
 
 //加入头部内容
-const moduleList = reactive(['关注', '发现', '附近', '广场舞', '音乐']);
+const moduleList = reactive(["关注", "发现", "附近", "广场舞", "音乐"]);
 
 //点击切换标题
 // 使用ref来创建一个响应式的变量
@@ -141,16 +141,15 @@ const onProgress = ({ progress }) => {
 //getModuleParams()方法需要等页面真实dom加载完毕后才可以执行
 onMounted(() => {
   getModuleParams();
-      //页面加载完默认运行一次progerss()，初始化下标线位置
-      onProgress({
-      progress:
-        moduleIdx.value == 0 ? 0 : moduleIdx.value / (moduleList.length - 1),
-    });
+  //页面加载完默认运行一次progerss()，初始化下标线位置
+  onProgress({
+    progress:
+      moduleIdx.value == 0 ? 0 : moduleIdx.value / (moduleList.length - 1),
+  });
   //监听窗口尺寸变化，跟新下标线位置
   window.addEventListener("resize", () => {
     posList = [];
     getModuleParams();
-
   });
   //console.log(posList);
 });
@@ -179,7 +178,7 @@ onMounted(() => {
     @include flexbc;
 
     .iconfont {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       color: rgb(51, 51, 51);
     }
     .iconfont:nth-child(1) {

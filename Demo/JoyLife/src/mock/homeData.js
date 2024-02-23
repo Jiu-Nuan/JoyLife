@@ -22,7 +22,7 @@ const exploreCardMock = async (nums = 20) =>{
             content:'标题测试-标题测试-标题测试-标题测试-标题测试-标题测试-标题测试',
             avatar:'src/mock/images/avatar/h0'+r+'.jpg',
             author:'12345',
-            likeCount:Math.floor(Math.random()*10000),
+            likeCount:Math.floor(Math.random()*30000),
         }
     })
 
