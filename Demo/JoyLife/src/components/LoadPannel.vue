@@ -14,6 +14,7 @@ import Loading from "@/components/Loading.vue";
 const pannelRef = ref(null);
 
 let isBottomLoading = ref(false);
+const emits = defineEmits(["searchMore"]);
 
 onMounted(() => {
   //获取可视域高度
@@ -42,6 +43,9 @@ onMounted(() => {
       if (nowScrollHeight != scrollHeight) {
         nowScrollHeight = scrollHeight;
         isBottomLoading.value = true;
+        emits('searchMore',()=>{
+          isBottomLoading.value = false;
+        });
       }
     }
   });

@@ -1,4 +1,14 @@
-const exploreCardMock = (nums = 20) =>{
+//模拟请求数据延迟
+const delay = (t) =>{
+    return new Promise(reslove =>{
+        setTimeout(() =>{
+            reslove()
+        },t)
+    })
+}
+
+const exploreCardMock = async (nums = 20) =>{
+    await delay(1000);//模拟请求数据延迟,异步接口
     //生成一个固定长度的数组，并初始化数组的每一项
     return new Array(nums).fill(1).map((a, i)=>{
         //生成一个0-10的随机数

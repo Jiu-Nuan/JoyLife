@@ -1,6 +1,6 @@
 <template>
-  <LoadPannel>
-    <div ref="exploreRef">
+  <LoadPannel @searchMore="searchMore">
+    <div ref="exploreRef" >
       <MiniCard
         v-for="(item, index) in exploreCards"
         :info="item"
@@ -21,8 +21,8 @@ import computeWaterFallFlow from "../../utils/waterFallFlow";
 //父组件初始化卡片数据
 let exploreCards = reactive([]);
 let imgLen; //记录需要加载的总图片数
-const initData = () => {
-  let res = exploreCardMock();
+const initData = async () => {
+  let res = await exploreCardMock();
   imgLen = res.length;
   res.forEach((item) => {
     exploreCards.push(item);
@@ -42,6 +42,19 @@ const addImgCount = () => {
     //开始计算瀑布流
     computeWaterFallFlow(exploreRef.value);
   }
+};
+
+//加载更多
+const searchMore = async (callback) => {
+  let res = await exploreCardMock(20);
+  //把请求的数据push数组
+  res.forEach((item) => {
+    exploreCards.push(item);
+  });
+  //更新瀑布流数组长度
+  imgLen = exploreCards.length;
+  //callback参数，传入回调函数
+  callback?callback():'';
 };
 </script>
 
