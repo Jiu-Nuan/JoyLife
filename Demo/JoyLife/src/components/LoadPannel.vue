@@ -22,15 +22,19 @@ onMounted(() => {
   //改变加载页高度
   //兼容底部导航栏
   pannelRef.value.style.height = window.innerHeight + "px";
-  window.addEventListener("resize", () => {
-    pannelRef.value.style.height = window.innerHeight + "px";
-  });
+  window.addEventListener("resize", setPannelHeight());
+
+  function setPannelHeight() {
+    if (pannelRef.value) {
+      pannelRef.value.style.height = window.innerHeight + "px";
+    }
+  }
 
   //监听滚动事件，判断是否滑到底部
   let nowScrollHeight = 0;
   pannelRef.value.addEventListener("scroll", function () {
     let scrollTop = this.scrollTop;
-    let clientHeight = this.clientHeight;  
+    let clientHeight = this.clientHeight;
     let scrollHeight = this.scrollHeight;
     // console.log(scrollTop, clientHeight, scrollHeight);
     //如果scrollTop + client Height >= scrollHeight，说明已经滑到底部
@@ -43,7 +47,7 @@ onMounted(() => {
       if (nowScrollHeight != scrollHeight) {
         nowScrollHeight = scrollHeight;
         isBottomLoading.value = true;
-        emits('searchMore',()=>{
+        emits("searchMore", () => {
           isBottomLoading.value = false;
         });
       }

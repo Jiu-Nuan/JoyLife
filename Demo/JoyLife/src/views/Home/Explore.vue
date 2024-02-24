@@ -29,6 +29,9 @@ const { changeRefresh } = useHooks;
 
 //父组件初始化卡片数据
 let exploreCards = reactive([]);
+//记录card中的image是否都已经加载完毕
+//笨方法：计算图片总数
+let imgCount = 0;
 let imgLen; //记录需要加载的总图片数
 const initData = async () => {
   imgCount = 0;
@@ -48,9 +51,7 @@ initData();
 
 // 瀑布流计算每个card的位置（卡片位置的计算需要所有卡片加载完毕进行）
 const exploreRef = ref(null);
-//记录card中的image是否都已经加载完毕
-//笨方法：计算图片总数
-let imgCount = 0;
+
 const addImgCount = () => {
   imgCount++;
   if (imgCount === imgLen) {
@@ -96,7 +97,7 @@ const exploreRefresh = async (callback) => {
 const refreshCanvasRef = ref(null);
 let ctx;
 let direction = 1;
-const R = 10;
+const R = 12;
 let angle = 0;
 const speed = 0.01;
 let centerX = 0;
