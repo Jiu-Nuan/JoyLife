@@ -17,9 +17,8 @@
       />
     </div>
     <div class="card-title">
-      {{ props.info.title ? props.info.title : '' }}
-      {{ props.info.content ? props.info.content.replaceAll('<br>','') : '' }}
-
+      {{ props.info.title ? props.info.title : "" }}
+      {{ props.info.content ? props.info.content.replaceAll('<br />','') : '' }}
     </div>
     <div class="card-bottom">
       <div class="card-b-left">
@@ -27,11 +26,8 @@
         <div class="card-name">{{ props.info.author }}</div>
       </div>
       <div class="card-b-right">
-        <p class="card-like" v-if="props.info.likeCount < 10000">
+        <p class="card-like">
           {{ props.info.likeCount }}
-        </p>
-        <p class="card-like" v-if="props.info.likeCount >= 10000">
-          {{ (props.info.likeCount / 10000).toFixed(1) + "万" }}
         </p>
         <i
           class="iconfont icon-aixin_shixin icon-card-small-liked"
@@ -44,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, toRefs} from "vue";
+import { ref, reactive, toRefs } from "vue";
 import useHooks from "@/hooks/useHooks";
 
 //在小卡片子组件中获取父组件传过来的数据
@@ -61,13 +57,13 @@ const contentImg = ref(null);
 function handleClick(_this) {
   console.log("小卡片被点击");
   popPara.value = {
-    x     :_this.$el.getBoundingClientRect().x,
-    y     :_this.$el.getBoundingClientRect().y,
-    width :_this.$el.getBoundingClientRect().width,
-    height:_this.$el.getBoundingClientRect().height,
-    imgH  :contentImg.value.height,
-    imgW  :contentImg.value.width,
-  }
+    x: _this.$el.getBoundingClientRect().x,
+    y: _this.$el.getBoundingClientRect().y,
+    width: _this.$el.getBoundingClientRect().width,
+    height: _this.$el.getBoundingClientRect().height,
+    imgH: contentImg.value.height,
+    imgW: contentImg.value.width,
+  };
   popPara.value.info = props.info;
   changeOpenStatus(true);
   contentTab.value.style.opacity = 0;

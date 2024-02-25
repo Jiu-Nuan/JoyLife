@@ -91,7 +91,7 @@ watch(router.currentRoute.value.path, () => {
   background-color: #fff;
   font-size: 0.9rem;
   color: rgb(149, 149, 149);
-  z-index: 999;
+  z-index: 10;
 
   .tab-name {
     min-width: 10%;

@@ -14,7 +14,7 @@ export default defineConfig({
     }
   },
   server:{
-    host: '192.168.0.103',
+    host: '192.168.0.102',
     //port: 5173,
   },
   //全局引入variable.scss

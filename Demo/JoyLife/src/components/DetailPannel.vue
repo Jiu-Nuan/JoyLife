@@ -47,13 +47,16 @@
     </div>
 
     <!-- 详情弹层 -->
-    <div class="" ref=""></div>
+    <div class="card-detail-frame" ref="">
+      <CardDetail></CardDetail>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, reactive, watch, nextTick, toRefs } from "vue";
 import useHooks from "@/hooks/useHooks";
+import CardDetail from '@/components/CardDetail.vue';
 
 const { popPara, isOpenDetail } = toRefs(useHooks.state);
 const { changeOpenStatus } = useHooks;
@@ -209,5 +212,16 @@ watch(
       }
     }
   }
+}
+
+.card-detail-frame{
+  overflow: hidden;
+  position: absolute;
+  z-index: 950;
+  height: 100vh;
+  width: 100vw;
+  border-radius: 8px;
+  transform-origin: 0 0;
+  
 }
 </style>
