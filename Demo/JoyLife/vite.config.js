@@ -13,10 +13,6 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  server:{
-    host: '192.168.0.102',
-    //port: 5173,
-  },
   //全局引入variable.scss
   css: {
     preprocessorOptions: {
@@ -25,5 +21,10 @@ export default defineConfig({
         additionalData: `@import "@/assets/scss/variable.scss";`
       }
     }
+  },
+
+  server:{
+    host: '192.168.3.12',
+    //port: 5173,
   },
 })

@@ -17,8 +17,8 @@
       />
     </div>
     <div class="card-title">
-      {{ props.info.title ? props.info.title : "" }}
-      {{ props.info.content ? props.info.content.replaceAll('<br />','') : '' }}
+      {{ props.info.title ? props.info.title : props.info.content }}
+      <!-- {{ props.info.content ? props.info.content.replaceAll('<br>','') : '' }} -->
     </div>
     <div class="card-bottom">
       <div class="card-b-left">

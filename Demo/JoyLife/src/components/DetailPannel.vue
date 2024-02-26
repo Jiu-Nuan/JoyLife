@@ -47,7 +47,7 @@
     </div>
 
     <!-- 详情弹层 -->
-    <div class="card-detail-frame" ref="">
+    <div class="card-detail-frame" ref="cardFrameRef">
       <CardDetail></CardDetail>
     </div>
   </div>
@@ -63,6 +63,7 @@ const { changeOpenStatus } = useHooks;
 
 const cardSmallRef = ref(null);
 const popCardRef = ref(null);
+const cardFrameRef = ref(null);
 
 let scaleRate = 1;
 //监听isOpenDetail
@@ -80,16 +81,34 @@ watch(
         cardSmallRef.value.style.width = `${popPara.value.width}px`;
         cardSmallRef.value.style.height = `${popPara.value.height}px`;
 
+        //big pos
+        cardFrameRef.value.style.top = `${popPara.value.y}px`;
+        cardFrameRef.value.style.left = `${popPara.value.x}px`;
+        cardFrameRef.value.style.height = `${popPara.value.height / scaleRate}px`;
+        cardFrameRef.value.style.transform = `scale(${scaleRate})`;
+      });
+
         setTimeout(() => {
             popCardRef.value.style.backgroundColor = "rgba(0,0,0,0.5)";
 
             //small
+            let sh = 100/(1/scaleRate);
             cardSmallRef.value.style.opacity = 0;
             cardSmallRef.value.style.top = '0px';
             cardSmallRef.value.style.left = '0px';
+            cardSmallRef.value.style.height = `${sh}vh`;
             cardSmallRef.value.style.transform = `scale(${1/scaleRate})`;
+
+
+            //big 
+            cardFrameRef.value.style.transform = 'scale(1)';
+            cardFrameRef.value.style.transition  = 'all 0.5s linear';
+            cardFrameRef.value.style.borderRadius = '0px';
+            cardFrameRef.value.style.height = `${document.body.clientHeight}px`;
+            //一些class样式统一写到frame-style中
+            //透明度从0--1，卡片位置一律往左上角移动
+            cardFrameRef.value.classList.add('frame-style');
         }, 0);
-      });
     }
   },{
     immediate: true
@@ -126,7 +145,7 @@ watch(
   background-color: #fefefe;
   overflow: hidden;
   border-radius: 8px;
-  transition: all 0.3s linear;
+  transition: all 0.5s linear;
   transform-origin: 0 0;
   .card-top {
     position: relative;
@@ -222,6 +241,11 @@ watch(
   width: 100vw;
   border-radius: 8px;
   transform-origin: 0 0;
-  
+}
+
+.frame-style{
+  opacity: 1 !important;
+  top: 0 !important;
+  left: 0 !important;
 }
 </style>
