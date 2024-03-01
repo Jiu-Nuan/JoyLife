@@ -34,8 +34,12 @@
         class="tab-name"
         :class="{ active: path === item.path }"
       >
-      <i class="iconfont icon-xiaoxi"></i><br />
+      <el-badge :value="200" :max="99">
+        <i class="iconfont icon-xiaoxi"></i>
+      <br />
         {{ item.name }}
+      </el-badge>
+      
       </div>
       <div
         @click="toPath(item.path)"

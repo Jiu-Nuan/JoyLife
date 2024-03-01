@@ -2,6 +2,8 @@
   <div class="">
     发布
   </div>
+  <el-empty description="这里没有任何东西"></el-empty>
+
 </template>
 
 <script setup>
