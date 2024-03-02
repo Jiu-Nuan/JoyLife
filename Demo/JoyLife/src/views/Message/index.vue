@@ -1,12 +1,13 @@
 <template>
-  <div class="">
-    消息
-    <el-empty description="这里没有任何东西"></el-empty>
-  </div>
+  <heFengWeather></heFengWeather>
 </template>
 
+
 <script setup>
-import { ref, reactive } from "vue"
+import { ref, reactive } from "vue";
+// import heFengWeather from "@/components/heFengWeather"
 </script>
 
 <style lang="scss" scoped></style>
+
+
