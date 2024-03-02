@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@vue/cli": "^5.0.8",
     "axios": "^1.6.7",
     "element": "^0.1.4",

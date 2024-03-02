@@ -8,4 +8,7 @@ import './assets/scss/main.scss'//全局引入样式文件
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
+//高德天气全局引入
+import AMapLoader from '@amap/amap-jsapi-loader';
+
 createApp(App).use(router).use(ElementPlus).mount('#app')
