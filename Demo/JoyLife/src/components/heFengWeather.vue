@@ -1,4 +1,4 @@
-<!-- 暂时废弃 -->
+<!-- 暂时废弃
 <template>
     <div id="he-plugin-simple"></div>
   </template>
@@ -35,4 +35,41 @@
   
     insertWidget();
   });
+  </script> -->
+
+
+  <template>
+    <div class="box">
+      <div id="he-plugin-standard"></div>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    data() {
+      return {};
+    },
+    created() {
+      window.WIDGET = {
+        CONFIG: {
+          layout: "1",
+          width: 450,
+          height: 150,
+          background: "1",
+          dataColor: "FFFFFF",
+          borderRadius: "5",
+          key: "1f55436fa2d3445a90190dafa2efd576",
+        },
+      };
+      let script = document.createElement("script");
+      script.src =
+      "https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    },
+    methods: {},
+  };
   </script>
+  
+  <style  scoped>
+  </style>
+  
