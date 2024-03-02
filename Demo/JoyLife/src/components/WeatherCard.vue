@@ -41,7 +41,7 @@ const initAMap = async () => {
     const citySearch = new AMap.CitySearch();
     citySearch.getLocalCity((status, result) => {
       if (status === "complete" && result.info === "OK") {
-        console.log(result.city);
+        console.log(result.city+"1111");
 
         AMap.plugin("AMap.Weather", () => {
           const weather = new AMap.Weather();

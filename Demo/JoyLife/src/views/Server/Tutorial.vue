@@ -2,8 +2,7 @@
   <div class="tutorial-carousel">
     <el-carousel indicator-position="inside">
       <el-carousel-item v-for="item in 4" :key="item">
-        <!-- <h3 text="2xl" justify="center">{{ item }}</h3> -->
-        <!-- <img src="../../mock/source/img0{{item}}.jpg" alt=""> -->
+          <heFengWeather></heFengWeather>
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -11,6 +10,8 @@
   
   <script setup>
 import { ref, reactive } from "vue";
+import heFengWeather from "@/components/heFengWeather.vue"
+
 </script>
 
 <style lang="scss" scoped>
@@ -18,7 +19,7 @@ import { ref, reactive } from "vue";
 .tutorial-carousel {
   position: relative;
   width: 100vw;
-  height: auto;
+  height: 200px;
   top: 3rem;
   background-color: #fefefe;
   border-radius: 0.5rem;
