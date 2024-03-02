@@ -16,7 +16,7 @@ const cityIDPromise = cityIDSearch();
 const widgetConfig = ref({
   layout: "1",
   width: window.innerWidth, // 初始宽度或自适应宽度
-  height: 200,
+  height: window.innerHeight*0.15,
   background: "1",
   dataColor: "FFFFFF",
   tmpColor: "FFFFFF",
