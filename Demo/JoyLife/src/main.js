@@ -12,3 +12,5 @@ import 'element-plus/dist/index.css'
 import AMapLoader from '@amap/amap-jsapi-loader';
 
 createApp(App).use(router).use(ElementPlus).mount('#app')
+
+

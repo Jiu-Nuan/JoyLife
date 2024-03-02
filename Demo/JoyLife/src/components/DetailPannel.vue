@@ -7,10 +7,6 @@
     >
       <div class="card-top">
         <div class="card-tri-bg" v-if="popPara.info.isVideo">
-          <!-- 绘制播放按钮：svg画法——————图标未对齐
-        <svg viewBox = "-70 -50 200 300" class="card-svg">
-          <polygon class="card-tri" stroke-linejoin = "round" points = "0,0 0,200 170,100"></polygon>
-        </svg> -->
           <i class="iconfont icon-bofang"></i>
         </div>
         <img

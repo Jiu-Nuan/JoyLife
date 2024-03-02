@@ -16,7 +16,24 @@ import DetailPannel from './components/DetailPannel.vue';
 import useHooks from "@/hooks/useHooks";
 
 const { isOpenDetail } = toRefs(useHooks.state);
+
+
+
 </script>
 
+
+<script>
+	export default {
+		onLaunch: function() {
+			console.log('App Launch')
+		},
+		onShow: function() {
+			console.log('App Show')
+		},
+		onHide: function() {
+			console.log('App Hide')
+		}
+	}
+</script>
 <style scoped lang = 'scss'>
 </style>

@@ -29,8 +29,7 @@
         <Tutorial></Tutorial>
       </swiper-slide>
       <swiper-slide>
-        <div class="slid-contet">2</div>
-        <!-- <Explore></Explore> -->
+        <Housekeeping></Housekeeping>
       </swiper-slide>
       ...
     </swiper>
@@ -43,6 +42,7 @@ import { ref, reactive, onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import Tutorial from "./Tutorial.vue";
+import Housekeeping from "./Housekeeping.vue";
 
 //初始化swiper
 let mySwiper = null;
