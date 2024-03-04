@@ -1,10 +1,7 @@
 <template>
   <div class="popCard" ref="popCardRef">
     <!-- 小卡片 -->
-    <div
-      ref="cardSmallRef"
-      class="card-detail-small"
-    >
+    <div ref="cardSmallRef" class="card-detail-small">
       <div class="card-top">
         <div class="card-tri-bg" v-if="popPara.info.isVideo">
           <i class="iconfont icon-bofang"></i>
@@ -44,7 +41,7 @@
 
     <!-- 详情弹层 -->
     <div class="card-detail-frame" ref="cardFrameRef">
-      <CardDetail></CardDetail>
+      <CardDetail ref="cardDetailRef" @click="goBack"></CardDetail>
     </div>
   </div>
 </template>
@@ -52,7 +49,7 @@
 <script setup>
 import { ref, reactive, watch, nextTick, toRefs } from "vue";
 import useHooks from "@/hooks/useHooks";
-import CardDetail from '@/components/CardDetail.vue';
+import CardDetail from "@/components/CardDetail.vue";
 
 const { popPara, isOpenDetail } = toRefs(useHooks.state);
 const { changeOpenStatus } = useHooks;
@@ -60,6 +57,34 @@ const { changeOpenStatus } = useHooks;
 const cardSmallRef = ref(null);
 const popCardRef = ref(null);
 const cardFrameRef = ref(null);
+const cardDetailRef = ref(null);
+
+//返回
+const goBack = () => {
+  popCardRef.value.style.backgroundColor = "rgba(0,0,0,0)";
+  cardSmallRef.value.style.opacity = 1;
+  cardSmallRef.value.style.transform = "scale(1)";
+  cardSmallRef.value.style.top = `${popPara.value.y}px`;
+  cardSmallRef.value.style.left = `${popPara.value.x}px`;
+  cardSmallRef.value.style.width = `${popPara.value.width}px`;
+  cardSmallRef.value.style.height = `${popPara.value.height}px`;
+
+  cardFrameRef.value.classList.remove("frame-style");
+  cardFrameRef.value.style.top = `${popPara.value.y}px`;
+  cardFrameRef.value.style.left = `${popPara.value.x}px`;
+  cardFrameRef.value.style.height = `${popPara.value.height / scaleRate}px`;
+  cardFrameRef.value.style.transform = `scale(${scaleRate})`;
+  cardFrameRef.value.style.opacity = 0;
+  cardFrameRef.value.style.borderRadius = '8px';
+
+  cardDetailRef.value.cardContentRef.style.height = `${popPara.value.height / scaleRate}px`
+  cardDetailRef.value.cardBottomRef.classList.remove("bottom-style");
+
+  //等一系列动画结束后，关闭detailPannel
+  setTimeout(() => {
+    changeOpenStatus(false);
+  }, 3000);
+};
 
 let scaleRate = 1;
 //监听isOpenDetail
@@ -80,34 +105,36 @@ watch(
         //big pos
         cardFrameRef.value.style.top = `${popPara.value.y}px`;
         cardFrameRef.value.style.left = `${popPara.value.x}px`;
-        cardFrameRef.value.style.height = `${popPara.value.height / scaleRate}px`;
+        cardFrameRef.value.style.height = `${
+          popPara.value.height / scaleRate
+        }px`;
         cardFrameRef.value.style.transform = `scale(${scaleRate})`;
       });
 
-        setTimeout(() => {
-            popCardRef.value.style.backgroundColor = "rgba(0,0,0,0.5)";
+      setTimeout(() => {
+        popCardRef.value.style.backgroundColor = "rgba(0,0,0,0.5)";
 
-            //small
-            let sh = 100/(1/scaleRate);
-            cardSmallRef.value.style.opacity = 0;
-            cardSmallRef.value.style.top = '0px';
-            cardSmallRef.value.style.left = '0px';
-            cardSmallRef.value.style.height = `${sh}vh`;
-            cardSmallRef.value.style.transform = `scale(${1/scaleRate})`;
+        //small
+        let sh = 100 / (1 / scaleRate);
+        cardSmallRef.value.style.opacity = 0;
+        cardSmallRef.value.style.top = "0px";
+        cardSmallRef.value.style.left = "0px";
+        cardSmallRef.value.style.height = `${sh}vh`;
+        cardSmallRef.value.style.transform = `scale(${1 / scaleRate})`;
 
-
-            //big 
-            cardFrameRef.value.style.transform = 'scale(1)';
-            cardFrameRef.value.style.transition  = 'all 0.5s linear';
-            cardFrameRef.value.style.borderRadius = '0px';
-            cardFrameRef.value.style.height = `${document.body.clientHeight}px`;
-            //一些class样式统一写到frame-style中
-            //透明度从0--1，卡片位置一律往左上角移动
-            cardFrameRef.value.classList.add('frame-style');
-        }, 0);
+        //big
+        cardFrameRef.value.style.transform = "scale(1)";
+        cardFrameRef.value.style.transition = "all 0.5s linear";
+        cardFrameRef.value.style.borderRadius = "0px";
+        cardFrameRef.value.style.height = `${document.body.clientHeight}px`;
+        //一些class样式统一写到frame-style中
+        //透明度从0--1，卡片位置一律往左上角移动
+        cardFrameRef.value.classList.add("frame-style");
+      }, 0);
     }
-  },{
-    immediate: true
+  },
+  {
+    immediate: true,
   }
 );
 </script>
@@ -229,7 +256,7 @@ watch(
   }
 }
 
-.card-detail-frame{
+.card-detail-frame {
   overflow: hidden;
   position: absolute;
   z-index: 950;
@@ -239,7 +266,7 @@ watch(
   transform-origin: 0 0;
 }
 
-.frame-style{
+.frame-style {
   opacity: 1 !important;
   top: 0 !important;
   left: 0 !important;

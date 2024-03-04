@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, toRefs } from "vue";
+import { ref, reactive, toRefs, watch } from "vue";
 import useHooks from "@/hooks/useHooks";
 
 //在小卡片子组件中获取父组件传过来的数据
@@ -68,6 +68,12 @@ function handleClick(_this) {
   changeOpenStatus(true);
   contentTab.value.style.opacity = 0;
 }
+
+watch(()=>isOpenDetail.value,(newVal,oldVal)=>{
+  if(!newVal){
+    contentTab.value.style.opacity = 1;
+  }
+})
 </script>
 
 <style lang="scss" scoped>

@@ -2,7 +2,7 @@
   <div class="card-detail">
     <div class="card-head">
       <div class="card-head-left">
-        <i class="iconfont icon-fanhui1"></i>
+        <i class="iconfont icon-fanhui1" @click="goBack"></i>
         <img :src="popPara.info.avatar" alt="" class="card-head-v" />
         <div class="card-name">{{ popPara.info.author }}</div>
       </div>
@@ -11,7 +11,7 @@
         <i class="iconfont icon-31zhuanfa"></i>
       </div>
     </div>
-    <div class="card-content">
+    <div class="card-content" ref="cardContentRef">
       <div class="card-swiper">
         <swiper
           v-if="popPara.info.imageUrl.length > 1 && isOpenDetail"
@@ -95,7 +95,7 @@
         <div class="card-end">- THE END -</div>
       </div>
     </div>
-    <div class="card-bottom">
+    <div class="card-bottom" ref="cardBottomRef">
       <div class="card-saysth">
         <i class="iconfont icon-icon"></i>
         <p>说点什么吧...</p>
@@ -134,6 +134,10 @@ import useHooks from "@/hooks/useHooks";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 const { popPara, isOpenDetail } = toRefs(useHooks.state);
+const emits = defineEmits(['goBack']);
+
+const cardContentRef = ref(null);
+const cardBottomRef = ref(null);
 
 let mySwiper = null;
 const onSwiper = (swiper) => {
@@ -145,6 +149,16 @@ let aIndex = ref(0);
 const onSlideChange = ({ activeIndex }) => {
   aIndex.value = activeIndex;
 };
+
+//返回函数
+const goBack = () => {
+  emits('goBack');
+};
+
+defineExpose({
+  cardContentRef,
+  cardBottomRef
+})
 </script>
 
 <style lang="scss" scoped>
@@ -423,5 +437,14 @@ const onSlideChange = ({ activeIndex }) => {
       }
     }
   }
+
+  .card-bottom{
+
+  }
+}
+
+.bottom-style{
+  position: fixed;
+  bottom: 0px;
 }
 </style>
