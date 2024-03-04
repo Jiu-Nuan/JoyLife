@@ -1,13 +1,6 @@
 <template>
     <div ref="contentTab" class="card-content" @click="handleClick(this)">
       <div class="card-top">
-        <div class="card-tri-bg" v-if="props.info.isVideo">
-          <!-- 绘制播放按钮：svg画法——————图标未对齐
-          <svg viewBox = "-70 -50 200 300" class="card-svg">
-            <polygon class="card-tri" stroke-linejoin = "round" points = "0,0 0,200 170,100"></polygon>
-          </svg> -->
-          <i class="iconfont icon-bofang"></i>
-        </div>
         <img
           ref="contentImg"
           :src="props.info.imageUrl[0]"
@@ -26,14 +19,15 @@
           <div class="card-name">{{ props.info.author }}</div>
         </div>
         <div class="card-b-right">
-          <p class="card-like">
-            {{ props.info.likeCount }}
+          <p class="card-salary">
+            {{ props.info.salary }}
           </p>
           <i
             class="iconfont icon-aixin_shixin icon-card-small-liked"
             v-if="props.info.isLiked"
           ></i>
           <i class="iconfont icon-aixin icon-card-small-not-liked" v-else></i>
+
         </div>
       </div>
     </div>
@@ -73,7 +67,7 @@
   <style lang="scss" scoped>
   .card-content {
     height: auto;
-    width: 50vw;
+    width: 100vw;
     background-color: #fefefe;
     border-radius: 0.5rem;
     box-shadow: 0.125rem 0.3125rem rgba(181, 181, 191, 0.1);
@@ -148,7 +142,7 @@
       }
       .card-b-right {
         @include flexxl;
-        font-size: 0.9rem;
+        font-size: 1.2rem;
   
         .icon-card-small-not-liked {
           font-size: 0.9rem;
@@ -158,9 +152,9 @@
           font-size: 0.9rem;
           color: red;
         }
-        .card-like {
+        .card-salary {
           margin: 0 0.3rem 0 0.3rem;
-          color: rgb(153, 153, 153);
+          color: orange;
         }
       }
     }

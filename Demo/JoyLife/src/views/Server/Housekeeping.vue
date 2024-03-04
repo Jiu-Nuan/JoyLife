@@ -5,9 +5,9 @@
         <!-- <i class="iconfont icon-jiazai"></i> -->
         <canvas ref="refreshCanvasRef" width="80" height="80"></canvas>
       </div>
-      <div ref="exploreRef">
+      <div ref="hourseKeepingRef">
         <HousekeepingCard
-          v-for="(item, index) in exploreCards"
+          v-for="(item, index) in hourseKeepingCards"
           :info="item"
           :key="item.id"
           @onImgLoaded="addImgCount"
@@ -20,7 +20,7 @@
   import { ref, reactive, toRefs, watch, onMounted, nextTick } from "vue";
   import LoadPannel from "../../components/LoadPannel.vue"; //上滑加载组件
   import HousekeepingCard from "../../components/HousekeepingCard.vue";
-  import { exploreCardMock } from "../../mock/homeData";
+  import { hourseKeepingCardMock } from "../../mock/serverData";
   import computeWaterFallFlow from "../../utils/waterFallFlow";
   import useHooks from "../../hooks/useHooks";
   
@@ -28,21 +28,21 @@
   const { changeRefresh } = useHooks;
   
   //父组件初始化卡片数据
-  let exploreCards = reactive([]);
+  let hourseKeepingCards = reactive([]);
   //记录card中的image是否都已经加载完毕
   //笨方法：计算图片总数
   let imgCount = 0;
   let imgLen; //记录需要加载的总图片数
   const initData = async () => {
     imgCount = 0;
-    let res = await exploreCardMock();
+    let res = await hourseKeepingCardMock();
   
     //将刷新后的数据push入数组前，数据查询完后需要清空数组
-    exploreCards.splice(0, exploreCards.length);
+    hourseKeepingCards.splice(0, hourseKeepingCards.length);
     nextTick(() => {
       imgLen = res.length;
       res.forEach((item) => {
-        exploreCards.push(item);
+        hourseKeepingCards.push(item);
       });
     });
   };
@@ -50,33 +50,33 @@
   initData();
   
   // 瀑布流计算每个card的位置（卡片位置的计算需要所有卡片加载完毕进行）
-  const exploreRef = ref(null);
+  const hourseKeepingRef = ref(null);
   
   const addImgCount = () => {
     imgCount++;
     if (imgCount === imgLen) {
       //开始计算瀑布流
-      computeWaterFallFlow(exploreRef.value,1);
+      computeWaterFallFlow(hourseKeepingRef.value,1);
     }
   };
   
   //加载更多
   const searchMore = async (callback) => {
-    let res = await exploreCardMock(20);
+    let res = await hourseKeepingCardMock(20);
     //把请求的数据push数组
     res.forEach((item) => {
-      exploreCards.push(item);
+      hourseKeepingCards.push(item);
     });
     //更新瀑布流数组长度
-    imgLen = exploreCards.length;
+    imgLen = hourseKeepingCards.length;
     //callback参数，传入回调函数
     callback ? callback() : "";
   };
   
   //刷新
   const refreshRef = ref(null);
-  const exploreRefresh = async (callback) => {
-    exploreRef.value.parentNode.parentNode.scrollTop = 0;
+  const hourseKeepingRefresh = async (callback) => {
+    hourseKeepingRef.value.parentNode.parentNode.scrollTop = 0;
     //刷新页面时，顶部展开一个面板，显示loading动画
     refreshRef.value.style.height = "100px";
     refreshRef.value.style.transition = "all 0.3s linear";
@@ -204,7 +204,7 @@
     async (newValue, oldValue) => {
       //如果isRefresh为true，刷新方法
       if (newValue) {
-        await exploreRefresh();
+        await hourseKeepingRefresh();
         changeRefresh(false);
       }
     }
@@ -228,14 +228,14 @@
     let startY = 0;
     let endY = 0;
     let topFlag = false;
-    exploreRef.value.addEventListener("touchstart", function (e)  {
+    hourseKeepingRef.value.addEventListener("touchstart", function (e)  {
       if (isTop()) {
         topFlag = true;
         startY = e.touches[0].pageY;
       }
     });
   
-    exploreRef.value.addEventListener("touchmove", function (e)  {
+    hourseKeepingRef.value.addEventListener("touchmove", function (e)  {
       //设置拖动的最大高度
       let scapeY = e.touches[0].pageY - startY;
       if (topFlag && scapeY > 0) {
@@ -248,7 +248,7 @@
       }
     });
   
-    exploreRef.value.addEventListener("touchend", async function (e)  {
+    hourseKeepingRef.value.addEventListener("touchend", async function (e)  {
       //松手时,如果加载宽度小于100,canvas圈大小随高度变化而变化
       if (topFlag) {
         let refreshDivH = refreshRef.value.style.height;
@@ -277,16 +277,16 @@
       }
     });
   
-    exploreRefresh();
+    hourseKeepingRefresh();
   });
   </script>
   
   <style lang="scss" scoped>
   //消除重复（在LoadPannel中已有）
-  // .explore-main {
+  // .hourseKeeping-main {
   //   overflow: auto;
   //   height: 100vh;
-  //   .explore-outer {
+  //   .hourseKeeping-outer {
   //     position: relative;
   //     margin-top: 3rem;
   //     margin-bottom: 3rem;
