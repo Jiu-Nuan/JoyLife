@@ -66,7 +66,8 @@ npm install
 npm run dev
 ```
 如果需要局域网访问项目,打开vite.config.js,引入
-```server:{
+```
+server:{
     host: '你当前的局域网IP',
   },
 ```
