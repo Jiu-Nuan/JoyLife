@@ -89,7 +89,7 @@ const exploreCardMock = async (nums = 20) => {
             title       : articleData[r].title,
             tag         : articleData[r].tag,
             content     : articleData[r].content,
-            avatar      : 'src/mock/source/avatar/h0' + r + '.jpg',
+            avatar      : 'src/mock/source/avatar/JoyLife.jpg',
             author      : '享老吧',
             publishTime : generateRandomDateTime(),
 

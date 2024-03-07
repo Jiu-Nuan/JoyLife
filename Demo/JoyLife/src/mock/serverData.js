@@ -1,5 +1,5 @@
 
-import articleData from './data'
+import serverContentData from './serverContentData'
 //模拟请求数据延迟
 const delay = (t) => {
     return new Promise(reslove => {
@@ -104,9 +104,9 @@ const hourseKeepingCardMock = async (nums = 20) => {
             //id、是否为视频文件、图片、标题、头像、用户名、点赞数量等
             id: i,
             imageUrl    : imageList,
-            title       : articleData[r].title,
-            tag         : articleData[r].tag,
-            content     : articleData[r].content,
+            title       : serverContentData[r].title,
+            tag         : serverContentData[r].tag,
+            content     : serverContentData[r].content,
             avatar      : 'src/mock/source/avatar/h0' + r + '.jpg',
             author      : getRandomAuntName(),
             salary      : generateHousekeepingSalary(),

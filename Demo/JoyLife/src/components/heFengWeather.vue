@@ -27,7 +27,7 @@ const widgetConfig = ref({
   aqiSize: "32",
   weatherIconSize:(window.innerHeight)/20,
   alertIconSize: "36",
-  borderRadius: "5",
+  borderRadius: "10",
   city: "",
   horizontal: "left",
   key: "1f55436fa2d3445a90190dafa2efd576",
@@ -68,7 +68,11 @@ onMounted(async () => {
   loadWidgetResources();
 });
 </script>
-  
-  <style  scoped></style>
+
+<style  scoped>
+.box {
+  pointer-events: none;
+}
+</style>
 
   

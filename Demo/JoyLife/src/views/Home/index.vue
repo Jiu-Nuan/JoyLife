@@ -51,6 +51,7 @@ import { ref, reactive, onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import Explore from "./Explore.vue";
+import citySearch from "@/mock/citySearch";
 
 //初始化swiper
 let mySwiper = null;
@@ -139,19 +140,30 @@ const onProgress = ({ progress }) => {
 };
 
 //getModuleParams()方法需要等页面真实dom加载完毕后才可以执行
-onMounted(() => {
-  getModuleParams();
-  //页面加载完默认运行一次progerss()，初始化下标线位置
+onMounted(async () => {
+  await getModuleParams();
+  
+  // 异步等待 citySearch 结果
+  try {
+    const cityName = await citySearch();
+    moduleList[2] = `${cityName}`;
+  } catch (error) {
+    console.error(error); // 处理错误情况
+  }
+
+  console.log(await citySearch()); // 此处也可以获取城市名称
+
+  // 页面加载完默认运行一次progress()，初始化下标线位置
   onProgress({
     progress:
       moduleIdx.value == 0 ? 0 : moduleIdx.value / (moduleList.length - 1),
   });
-  //监听窗口尺寸变化，跟新下标线位置
+
+  // 监听窗口尺寸变化，重新计算并更新下标线位置
   window.addEventListener("resize", () => {
     posList = [];
     getModuleParams();
   });
-  //console.log(posList);
 });
 </script>
 
