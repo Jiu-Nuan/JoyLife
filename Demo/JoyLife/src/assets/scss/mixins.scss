@@ -1,39 +1,54 @@
+/**
+ * 用于设置导航栏等需要水平居中分布的元素样式
+ */
 @mixin flexac{
-    // 下方导航栏布局
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    display: flex; // 使用弹性布局
+    justify-content: space-around; // 子元素水平方向等间距分布
+    align-items: center; // 子元素垂直方向居中
 }
 
+/**
+ * 用于设置需要子元素在父元素水平方向上首尾间距相等的布局样式
+ */
 @mixin flexbc{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; // 使用弹性布局
+    justify-content: space-between; // 子元素水平方向首尾间距相等
+    align-items: center; // 子元素垂直方向居中
 }
 
-
+/**
+ * 用于设置需要子元素同时在父元素的水平和垂直中心位置的布局样式
+ */
 @mixin flexcc{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // flex-direction: row;
+    display: flex; // 使用弹性布局
+    justify-content: center; // 子元素水平方向居中
+    align-items: center; // 子元素垂直方向居中
+    // 此处注释说明了flex-direction属性的潜在使用意图，虽然未直接设置
 }
 
+/**
+ * 与flexbc类似，用于设置子元素在父元素水平方向上首尾间距相等的布局样式，命名可能意在表示左右空间相等
+ */
 @mixin flexlr{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; // 使用弹性布局
+    justify-content: space-between; // 子元素水平方向首尾间距相等
+    align-items: center; // 子元素垂直方向居中
 }
 
+/**
+ * 用于设置子元素在父元素的起始位置开始且垂直方向居中的布局样式
+ */
 @mixin flexxl{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    display: flex; // 使用弹性布局
+    justify-content: flex-start; // 子元素水平方向起始位置开始
+    align-items: center; // 子元素垂直方向居中
 }
 
+/**
+ * 与flexxl作用相同，用于设置子元素在父元素的起始位置开始且垂直方向居中的布局样式
+ */
 @mixin flexl{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    display: flex; // 使用弹性布局
+    justify-content: flex-start; // 子元素水平方向起始位置开始
+    align-items: center; // 子元素垂直方向居中
 }
-

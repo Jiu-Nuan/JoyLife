@@ -88,7 +88,7 @@ watch(router.currentRoute.value.path, () => {
 <style lang="scss" scoped>
 .tab-bar {
   position: absolute;
-  bottom: 0;
+  bottom: 0rem;
   width: 100%;
   height: 3rem;
   @include flexac;

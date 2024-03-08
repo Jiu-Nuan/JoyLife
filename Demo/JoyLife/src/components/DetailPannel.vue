@@ -24,11 +24,8 @@
           <div class="card-name">{{ popPara.info.author }}</div>
         </div>
         <div class="card-b-right">
-          <p class="card-like" v-if="popPara.info.likeCount < 10000">
+          <p class="card-like" >
             {{ popPara.info.likeCount }}
-          </p>
-          <p class="card-like" v-if="popPara.info.likeCount >= 10000">
-            {{ (popPara.info.likeCount / 10000).toFixed(1) + "万" }}
           </p>
           <i
             class="iconfont icon-aixin_shixin icon-card-small-liked"
