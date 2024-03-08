@@ -1,7 +1,7 @@
 <template>
   <div class="chat-common-layout">
     <el-container>
-      <el-header><span v-if="userInfo.name=='默认群聊'">{{userInfo.name}}： {{userList.length-1}}</span>  
+      <el-header><span v-if="userInfo.name=='默认群聊'">{{userInfo.name}}({{userList.length-1}})</span>  
           <span v-else>{{userInfo.name}}</span></el-header>
       <el-main>
         <div class="chat-content">
@@ -54,8 +54,8 @@
         </div>
       </el-main>
       <el-footer>
-        <el-button :icon="icon - biaoqing" circle />
-        <el-button :icon="Search" circle />
+        <el-button  circle><i class="iconfont icon-biaoqing"></i></el-button>
+        <el-button  circle><i class="iconfont icon-jiahao"></i></el-button>
         <el-input
           v-model="input"
           style="width: 50vw"
@@ -128,6 +128,9 @@ font-weight: bold;
     color: #e9eef3;
     font-size: 1.2rem;
     font-family: "Microsoft YaHei";
+  }
+  .iconfont{
+    font-size: 2rem;
   }
 }
 

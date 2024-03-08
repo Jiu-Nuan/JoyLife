@@ -13,6 +13,7 @@
 import {toRefs} from 'vue';
 import TabBar from "@/components/TabBar.vue";
 import DetailPannel from './components/DetailPannel.vue';
+import ChatInterface from './components/ChatInterface.vue';
 import useHooks from "@/hooks/useHooks";
 
 const { isOpenDetail } = toRefs(useHooks.state);
