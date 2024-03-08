@@ -11,6 +11,9 @@ import 'element-plus/dist/index.css'
 //高德天气全局引入
 import AMapLoader from '@amap/amap-jsapi-loader';
 
-createApp(App).use(router).use(ElementPlus).mount('#app')
+//引入store 的vuex
+import messageStore from './store/messageStore'
+
+createApp(App).use(router).use(ElementPlus).use(messageStore).mount('#app')
 
 
