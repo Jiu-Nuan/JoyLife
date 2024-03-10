@@ -3,20 +3,19 @@
     <div id="he-plugin-standard"></div>
   </div>
 </template>
-  
+
 <script setup>
 import { ref, onMounted } from "vue";
-import cityIDSearch from '../mock/cityIDSearch';
+import cityIDSearch from "../api/amap/cityIDSearch";
 
 // 创建一个ref来暂存城市ID的promise
 const cityIDPromise = cityIDSearch();
 
-
 // 初始化数据对象
 const widgetConfig = ref({
   layout: "1",
-  width: window.innerWidth, // 初始宽度或自适应宽度
-  height: window.innerHeight*0.15,
+  width: window.innerWidth - ((0.3 * window.innerWidth) / 400) * 16, // 初始宽度或自适应宽度
+  height: window.innerHeight * 0.15,
   background: "1",
   dataColor: "FFFFFF",
   tmpColor: "FFFFFF",
@@ -25,7 +24,7 @@ const widgetConfig = ref({
   citySize: 36,
   aqiColor: "FFFFFF",
   aqiSize: "32",
-  weatherIconSize:(window.innerHeight)/20,
+  weatherIconSize: window.innerHeight / 20,
   alertIconSize: "36",
   borderRadius: "10",
   city: "",
@@ -35,30 +34,32 @@ const widgetConfig = ref({
 
 // 封装的方法
 const loadWidgetResources = () => {
-      window.WIDGET = {
-        CONFIG: widgetConfig.value,
-      };
+  window.WIDGET = {
+    CONFIG: widgetConfig.value,
+  };
 
-      const insertCssAndJs = (document) => {
-        const linkElement = document.createElement("link");
-        linkElement.rel = "stylesheet";
-        linkElement.href = "https://widget.qweather.net/standard/static/css/he-standard.css?v=1.5.0";
-        // linkElement.href = '../assets/css/he-simple.css';
+  const insertCssAndJs = (document) => {
+    const linkElement = document.createElement("link");
+    linkElement.rel = "stylesheet";
+    linkElement.href =
+      "https://widget.qweather.net/standard/static/css/he-standard.css?v=1.5.0";
+    // linkElement.href = '../assets/css/he-simple.css';
 
-        const scriptElement = document.createElement("script");
-        scriptElement.src = "https://widget.qweather.net/standard/static/js/he-standard.js?v=1.5.0";
+    const scriptElement = document.createElement("script");
+    scriptElement.src =
+      "https://widget.qweather.net/standard/static/js/he-standard.js?v=1.5.0";
 
-        const firstScriptNode = document.getElementsByTagName("script")[0];
+    const firstScriptNode = document.getElementsByTagName("script")[0];
 
-        if (firstScriptNode) {
-          firstScriptNode.parentNode.insertBefore(linkElement, firstScriptNode);
-          firstScriptNode.parentNode.insertBefore(scriptElement, firstScriptNode);
-        }
-      };
+    if (firstScriptNode) {
+      firstScriptNode.parentNode.insertBefore(linkElement, firstScriptNode);
+      firstScriptNode.parentNode.insertBefore(scriptElement, firstScriptNode);
+    }
+  };
 
-      // 在组件挂载后插入CSS和JS
-      insertCssAndJs(document);
-    };
+  // 在组件挂载后插入CSS和JS
+  insertCssAndJs(document);
+};
 
 // 在mounted阶段等待城市ID获取完成，再设置config和加载资源
 onMounted(async () => {
@@ -69,10 +70,8 @@ onMounted(async () => {
 });
 </script>
 
-<style  scoped>
+<style scoped>
 .box {
   pointer-events: none;
 }
 </style>
-
-  

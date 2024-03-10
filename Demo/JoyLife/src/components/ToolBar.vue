@@ -15,8 +15,8 @@
     </div>
   </div>
 </template>
-  
-  <script setup>
+
+<script setup>
 import { ref } from "vue";
 
 const toolFunctions = ref([
@@ -28,8 +28,8 @@ const toolFunctions = ref([
   "远程协助",
 ]);
 </script>
-  
-  <style lang="scss" scoped>
+
+<style lang="scss" scoped>
 .tool-container {
   @include flexlr;
   height: auto;
@@ -48,7 +48,7 @@ const toolFunctions = ref([
     margin-right: 0.2rem;
     background-color: #ee7934;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
+    // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 10px 15px rgba(0, 0, 0, 0.1);
 
     & > div {
       display: flex;
@@ -79,13 +79,13 @@ const toolFunctions = ref([
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
-    color: goldenrod;
+    color: #fefefe;
     background-color: #86d2ec;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
-      /* 水平偏移 垂直偏移 模糊半径 阴影颜色透明度 */ 0 10px 15px
-        rgba(0, 0, 0, 0.1); /* 可以添加多个阴影效果 */
+    // box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+    //   /* 水平偏移 垂直偏移 模糊半径 阴影颜色透明度 */ 0 10px 15px
+    //     rgba(0, 0, 0, 0.1); /* 可以添加多个阴影效果 */
   }
 
   /* 根据颜色设置背景色 */

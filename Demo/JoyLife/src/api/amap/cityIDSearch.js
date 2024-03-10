@@ -1,13 +1,16 @@
 import citySearch from "./citySearch";
-import cityData from '../assets/cityname_cn.json';
+import cityData from "@/assets/cityname_cn.json";
 
-const cityDataMap = cityData.reduce((acc, curr) => ({ ...acc, [curr.cityZh]: curr.id }), {});
+const cityDataMap = cityData.reduce(
+  (acc, curr) => ({ ...acc, [curr.cityZh]: curr.id }),
+  {}
+);
 
 async function cityIDSearch() {
   try {
     const searchedCity = await citySearch();
     const cityId = cityDataMap[searchedCity];
-    
+
     if (cityId) {
       return cityId;
       // console.log(`找到城市ID: ${cityId}`);
@@ -15,7 +18,7 @@ async function cityIDSearch() {
       throw new Error(`未能找到城市ID: ${searchedCity}`);
     }
   } catch (error) {
-    throw new Error('获取本地城市信息失败');
+    throw new Error("获取本地城市信息失败");
   }
 }
 

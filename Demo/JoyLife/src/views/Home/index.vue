@@ -7,7 +7,7 @@
           v-for="(item, idx) in moduleList"
           @click="changeSwiper(idx)"
           :class="{ active: idx === moduleIdx }"
-        >{{ item }}</span
+          >{{ item }}</span
         >
         <div class="under-line" ref="underLineRef">
           <div>
@@ -51,7 +51,7 @@ import { ref, reactive, onMounted } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import Explore from "./Explore.vue";
-import citySearch from "@/mock/citySearch";
+import citySearch from "@/api/amap/citySearch";
 
 //初始化swiper
 let mySwiper = null;
@@ -142,7 +142,7 @@ const onProgress = ({ progress }) => {
 //getModuleParams()方法需要等页面真实dom加载完毕后才可以执行
 onMounted(async () => {
   await getModuleParams();
-  
+
   // 异步等待 citySearch 结果
   try {
     const cityName = await citySearch();
@@ -231,3 +231,4 @@ onMounted(async () => {
   }
 }
 </style>
+@/api/amap/citySearch
